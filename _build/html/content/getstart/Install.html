@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Install &mdash; LibSignal v1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Start" href="Start.html" />
+    <link rel="prev" title="Introduction" href="Introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> LibSignal
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Start:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#source">Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simulator-environment-configuration">Simulator environment configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cityflow-environment">CityFlow Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sumo-environment">SUMO Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cbengine">CBEngine</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#requirment">Requirment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selective-agents">Selective agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selective-simulation-environment">selective simulation environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Start.html">Start</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Detailed Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../detailed/Experiment/index.html">Experiment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../detailed/API/index.html">API Introduction</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">LibSignal</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Install</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/content/getstart/Install.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="install">
+<h1>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
+<section id="source">
+<h2>Source<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h2>
+<p>LibSingal provides installation from source code.
+Please execute the following command to install and configure  our environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">DaRL</span>
+<span class="n">cd</span> <span class="n">DaRL</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">DaRL</span><span class="o">-</span><span class="n">LibSignal</span><span class="o">/</span><span class="n">LibSignal</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</section>
+<section id="simulator-environment-configuration">
+<h2>Simulator environment configuration<a class="headerlink" href="#simulator-environment-configuration" title="Permalink to this headline">¶</a></h2>
+<br />
+Though CityFlow and SUMO are stable under Windows and Linux systems, we still recommend users work under the Linux system. Currently, CBEngine is stable under the Linux system.<br><br>
+<section id="cityflow-environment">
+<h3>CityFlow Environment<a class="headerlink" href="#cityflow-environment" title="Permalink to this headline">¶</a></h3>
+<br />
+<p>To install CityFlow simulator, please follow the instruction on <a class="reference external" href="https://cityflow.readthedocs.io/en/latest/install.html#">CityFlow Doc</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span> <span class="n">cmake</span>
+
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cityflow</span><span class="o">-</span><span class="n">project</span><span class="o">/</span><span class="n">CityFlow</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">CityFlow</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>To test configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cityflow</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">cityflow</span><span class="o">.</span><span class="n">Engine</span>
+</pre></div>
+</div>
+<br>
+</section>
+<section id="sumo-environment">
+<h3>SUMO Environment<a class="headerlink" href="#sumo-environment" title="Permalink to this headline">¶</a></h3>
+<br />
+<p>To install SUMO environment, please follow the instruction on <a class="reference external" href="https://epics-sumo.sourceforge.io/sumo-install.html#">SUMO Doc</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo apt-get install cmake python g++ libxerces-c-dev libfox-1.6-dev libgdal-dev libproj-dev libgl2ps-dev swig
+
+git clone --recursive https://github.com/eclipse/sumo
+
+export SUMO_HOME=&quot;$PWD/sumo&quot;
+mkdir sumo/build/cmake-build &amp;&amp; cd sumo/build/cmake-build
+cmake ../..
+make -j$(nproc)
+</pre></div>
+</div>
+<p>To test installation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">DaRL</span><span class="o">/</span><span class="n">sumo</span><span class="o">/</span><span class="nb">bin</span>
+<span class="o">./</span><span class="n">sumo</span>
+</pre></div>
+</div>
+<p>To add SUMO and traci model into system PATH, execute code below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">SUMO_HOME</span><span class="o">=~/</span><span class="n">DaRL</span><span class="o">/</span><span class="n">sumo</span>
+<span class="n">export</span> <span class="n">PYTHONPATH</span><span class="o">=</span><span class="s2">&quot;$SUMO_HOME/tools:$PYTHONPATH&quot;</span>
+</pre></div>
+</div>
+<p>To test configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">libsumo</span>
+<span class="kn">import</span> <span class="nn">traci</span>
+</pre></div>
+</div>
+<br>
+</section>
+<section id="cbengine">
+<h3>CBEngine<a class="headerlink" href="#cbengine" title="Permalink to this headline">¶</a></h3>
+<br />
+<p>CBEngine currently works stably under the Linux system; we highly recommend users choose Linux if we plan to conduct experiments under the CBEinge simulation environment. (Currently not available)</p>
+<br>
+</section>
+</section>
+<section id="requirment">
+<h2>Requirment<a class="headerlink" href="#requirment" title="Permalink to this headline">¶</a></h2>
+<br />
+<p>Our code is based on Python version 3.9 and Pytorch version 1.11.0. For example, if your CUDA version is 11.3 you can follow the instruction on <a class="reference external" href="https://pytorch.org/get-started/locally/">PyTorch</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">torch</span> <span class="n">torchvision</span> <span class="n">torchaudio</span> <span class="o">--</span><span class="n">extra</span><span class="o">-</span><span class="n">index</span><span class="o">-</span><span class="n">url</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">pytorch</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">whl</span><span class="o">/</span><span class="n">cu113</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+<section id="selective-agents">
+<h2>Selective agents<a class="headerlink" href="#selective-agents" title="Permalink to this headline">¶</a></h2>
+<br />
+<p>We also support agents implemented based on other libraries</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Colight Geometric implementation based on default environment mentioned in Requirment</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="n">torch</span><span class="o">-</span><span class="n">scatter</span> <span class="n">torch</span><span class="o">-</span><span class="n">sparse</span> <span class="n">torch</span><span class="o">-</span><span class="n">cluster</span> <span class="n">torch</span><span class="o">-</span><span class="n">spline</span><span class="o">-</span><span class="n">conv</span> <span class="n">torch</span><span class="o">-</span><span class="n">geometric</span> <span class="o">-</span><span class="n">f</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">data</span><span class="o">.</span><span class="n">pyg</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">whl</span><span class="o">/</span><span class="n">torch</span><span class="o">-</span><span class="mf">1.11.0</span><span class="o">+</span><span class="n">cu113</span><span class="o">.</span><span class="n">html</span>
+
+<span class="c1"># ppo_pfrl implementation</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pfrl</span>
+</pre></div>
+</div>
+<p>Detailed instrcuctions can be found on page <a class="reference external" href="https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html">Pytorch_geometric</a> and <a class="reference external" href="https://pfrl.readthedocs.io/en/latest/install.html">PFRL</a>. After installation, user should uncomment code in PATH ./agent/__init__.py</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># from .ppo_pfrl import IPPO_pfrl</span>
+<span class="c1"># from colight import CoLightAgent</span>
+</pre></div>
+</div>
+</section>
+<section id="selective-simulation-environment">
+<h2>selective simulation environment<a class="headerlink" href="#selective-simulation-environment" title="Permalink to this headline">¶</a></h2>
+<p>If users only need some specific simulation environments, please comment on the respective codes following the instructions below.</p>
+<p><img alt="uncommon_world" src="../../_images/world_uncomment.png" /></p>
+<p><img alt="uncommon_generator1" src="../../_images/generator_uncomment1.png" /></p>
+<p><img alt="uncommon_generator2" src="../../_images/generator_uncomment2.png" /></p>
+<p>Now, you can use LibSignal;for more details, please refer to Quick Start.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Start.html" class="btn btn-neutral float-right" title="Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, DaRL.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

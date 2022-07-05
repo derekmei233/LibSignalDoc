@@ -10,6 +10,17 @@ import sys
 
 # TODO: THIS IS Y/X  But we keep it right now
 def _get_direction(road, out=True):
+    '''
+    used for getting directions
+    Parameters
+    ----------
+    road
+    out
+
+    Returns
+    -------
+
+    '''
     if out:
         x = road["points"][1]["x"] - road["points"][0]["x"]
         y = road["points"][1]["y"] - road["points"][0]["y"]

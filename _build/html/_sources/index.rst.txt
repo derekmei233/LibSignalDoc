@@ -15,7 +15,7 @@ Welcome to LibSignal's documentation!
    content/getstart/Start.md
 
 .. toctree::
-   :maxdepth: 10
+   :maxdepth: 6
    :caption: Detailed Guide:
 
    content/detailed/Experiment/index.rst

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-convert SUMO file to CityFlow file.
+used for converting SUMO file to CityFlow file.
 """
 
 import os

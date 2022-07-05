@@ -20,7 +20,9 @@ import os
 import sys
 # sys.path.insert(0, os.path.abspath('codepieces/temp'))
 # sys.path.insert(0, os.path.abspath('/home/danielsmith/PycharmProjects/WorkSpace/toolkit/officialdoc/codesrc'))
-sys.path.insert(0, os.path.abspath('./codesrc/'))
+sys.path.insert(0, os.path.relpath('./codepieces/temp/'))
+# sys.path.insert(0, os.path.abspath('./codesrc/'))
+
 # sys.path.insert(0, os.path.abspath('/home/danielsmith/PycharmProjects/WorkSpace/toolkit/officialdoc/codesrc/LibSignal/common'))
 project = 'LibSignal'
 copyright = '2022, DaRL'
@@ -28,8 +30,6 @@ author = 'DaRL'
 
 # The full version, including alpha/beta/rc tags
 release = 'v1.0.0'
-
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be

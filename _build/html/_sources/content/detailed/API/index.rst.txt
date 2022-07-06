@@ -7,12 +7,8 @@ API Introduction
 =====================================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 5
+   :caption: World:
 
-   LibSignal.agent
-   LibSignal.dataset
-   LibSignal.generator
-   LibSignal.task
-   LibSignal.trainer
-   LibSignal.world
+   World/index.rst
 

@@ -1,16 +1,29 @@
-import json
-import os.path as osp
-import citypb
-from common.registry import Registry
+# -*- coding: utf-8 -*-
+"""
+used to describe the open engine world
+"""
 
-import time
 import os
+import sys
+from sys import platform
+import argparse
+from collections import defaultdict
+import sympy
+from mpmath import degrees, radians
+import copy
+import math
+import json
+import xml.etree.cElementTree as ET
+import xml.dom.minidom
 from math import atan2, pi
-import random
-import gc
 
 
 def _get_direction(road):
+    '''_get_direction
+
+    :param road:
+    :return:
+    '''
     x = road[1]['x'] - road[0]['x']
     y = road[1]['y'] - road[0]['y']
     tmp = atan2(x, y)
@@ -18,12 +31,20 @@ def _get_direction(road):
 
 
 class Intersection(object):
+    '''
+    Intersection Description
+    '''
     def __init__(self, intersection, world):
+        '''
+
+        :param intersection:
+        :param world:
+        '''
         self.id = intersection['id']
         self.world = world
         self.eng = self.world.eng
         # TODO: check if its from North
-        #incoming and outgoing roads of each intersection, clock-wise order from North
+        # incoming and outgoing roads of each intersection, clock-wise order from North
         self.roads = []
         self.outs = []
         self.directions = []
@@ -79,6 +100,10 @@ class Intersection(object):
         self.full_observation = {lane: dict() for lane in self.lanes}
 
     def _sort_roads(self):
+        '''
+
+        :return:
+        '''
         order = sorted(range(len(self.roads)),
                        key=lambda i: (self.directions[i],
                                       self.outs[i] if self.world.RIGHT else not self.outs[i]))
@@ -90,6 +115,10 @@ class Intersection(object):
         self.in_roads = [self.roads[i] for i, x in enumerate(self.outs) if not x]
 
     def reset():
+        '''
+
+        :return:
+        '''
         self.current_phase = 0
         self.current_phase_time = 0
         self.vehicles_cur = {lane: dict() for lane in self.lanes}
@@ -99,7 +128,10 @@ class Intersection(object):
         self.full_observation = {lane: dict() for lane in self.lanes}
 
     def observe(self):
-        # TODO: DOUBLE CHECK IF OUT LANE COUNT?
+        '''
+
+        :return:
+        '''
         speed = self.world.eng.get_vehicle_speed()
         # for debug
         """
@@ -107,8 +139,8 @@ class Intersection(object):
         print('lane_vehicle: ', self.eng.get_lane_vehicles())
         """
         for lane in self.lanes:
-            lane_vehicles = [v 
-                for v in self.eng.get_lane_vehicles().get(lane, [])] # basic information returned from simulator
+            lane_vehicles = [v
+                             for v in self.eng.get_lane_vehicles().get(lane, [])]  # basic information returned from simulator
             # process each vehicles on this lane
             for v in lane_vehicles:
                 if v in self.vehicles_cur[lane].keys():
@@ -118,7 +150,7 @@ class Intersection(object):
                 elif v not in self.vehicles_cur_road[int(str(lane)[:-2])]:
                     # TODO: new vehicle. since start speed is set to be 0, modifiy it
                     self.vehicles_cur[lane][v] = {'speed': -1, 'wait_time': -1,
-                     'start_time': self.world.eng.get_current_time()}
+                                                  'start_time': self.world.eng.get_current_time()}
                     self.vehicles_cur_road[int(str(lane)[:-2])].update({v: lane})
                 else:
                     assert v not in self.vehicles_cur[lane].keys()
@@ -132,19 +164,19 @@ class Intersection(object):
                             break
         for lane in self.lanes:
             lane_mearsures = {'lane_waiting_time_count': 0, 'lane_waiting_count': 0,
-            'lane_count': 0, 'queue_length': 0}
-            lane_vehicles = [v 
-                for v in self.world.eng.get_lane_vehicles().get(lane, [])]
+                              'lane_count': 0, 'queue_length': 0}
+            lane_vehicles = [v
+                             for v in self.world.eng.get_lane_vehicles().get(lane, [])]
             out = self.vehicles_cur[lane].keys() - lane_vehicles
             for v in out:
                 self.vehicles[lane].update({v: {'start_time': self.vehicles_cur[lane][v]['start_time'],
-                 'end_time': self.world.eng.get_current_time()}})
-                 # could combine this two step
+                                                'end_time': self.world.eng.get_current_time()}})
+                # could combine this two step
                 self.vehicles_cur[lane].pop(v)
                 self.vehicles_cur_road[int(str(lane)[:-2])].pop(v)
                 # TODO: CHECKOU HERE WHY NOT POPED
             # process information of this lane based on vehicles states
-            
+
             for k, v in self.vehicles_cur[lane].items():
                 if v['speed'] == 0:
                     lane_mearsures['lane_waiting_count'] += 1
@@ -170,6 +202,11 @@ class Intersection(object):
         """
 
     def psedo_step(self, action=None):
+        '''
+
+        :param action:
+        :return:
+        '''
         # No observation here. Update after step() finished
         if action != self.current_phase:
             self.current_phase = action
@@ -178,11 +215,11 @@ class Intersection(object):
         self.world.eng.set_ttl_phase(self.id, action)
 
 
-# @Registry.register_world('openengine')
 class World(object):
     """
     Create a Citypb engine and maintain infromations about Citypb world
     """
+
     def __init__(self, citypb_config, thread_num):
         print("building world from cbengine...")
         self.cfg_file = citypb_config
@@ -194,7 +231,7 @@ class World(object):
         flag = 0
         for line in citypb_config:
             if ("interval" in line):
-                interval = line.split('=')[1].strip(' ') 
+                interval = line.split('=')[1].strip(' ')
                 flag += 1
             if ("road_file_addr" in line):
                 roadnet_path = line.split(':')[1].strip('\n').strip(' ')
@@ -202,14 +239,13 @@ class World(object):
                 break
         assert flag == 2, 'please provide interval and road_file_addr in cfg file'
 
-
         self.roadnet = self._get_roadnet(roadnet_path)
         self.RIGHT = True  # TODO: provide right driver
         self.interval = interval
         # will be generated in _get_roadnet function
         # Intersection(self.roadnet["intersections"][i]
         self.intersections = [Intersection(self.roadnet["intersections"][i], self)
-            for i in self.roadnet["intersections"] if not self.roadnet["intersections"][i]["virtual"]]
+                              for i in self.roadnet["intersections"] if not self.roadnet["intersections"][i]["virtual"]]
         print('intersection created')
         self.id2intersection = dict()
         for inter in self.intersections:
@@ -236,7 +272,6 @@ class World(object):
         self.vehicles = dict()
         self.vehicles_cur = dict()
 
-
         self.info_functions = {
             "vehicles": self.get_vehicles,
             "lane_count": self.get_lane_vehicle_count,
@@ -259,7 +294,6 @@ class World(object):
         self.subscribe('lane_vehicles')
         self._update_infos()
 
-
     def _get_roadnet(self, citypb_path):
         """
         generate roadnet dictionary based on providec configuration file
@@ -274,28 +308,28 @@ class World(object):
              14-'start_roads'(len(N_start_roads)): [(id)],
              15-'end_roads'(len=N_end_roads): [(id)],
              16-'direction': degree to x,
-             17-'road_lane_mapping': 
+             17-'road_lane_mapping':
                 {key='id_road'(len=N_lanes_in_road): [
                     {key='id_lane': name of lane based on road id
                         161-'type': [x, x, x]]
                  }
              18-'direction': {'road_id': (angle between road and x axis)}
              19-'virtual': bool
-             1A*-'roadLinks'(len=N_road links): 
+             1A*-'roadLinks'(len=N_road links):
                 {1A1-'type': diriction type(go_straight, turn_left, turn_right, turn_U),  # TODO: check turn_u
                  1A2-'startRoad': start road name,
                  1A3-'endRoad': end road name,
                  1A4-'direction': int(same as type)
-                 1A5-'laneLinks(len-N_lane links of road): 
+                 1A5-'laneLinks(len-N_lane links of road):
                  },
-             1B*-'trafficLight: 
+             1B*-'trafficLight:
                 {1B1-'roadLinkIndices'(len=N_road links): [],
                  1B2-'lightphases'(len=N_phases): {1B11-'time': int(time long),
                                                     1B12-'availableRoadLinks'(len=N_working_roads): []
                                                     }
                  },
              },
-         2-'roads'-(len=N_roads ): 
+         2-'roads'-(len=N_roads ):
             {key='id': name of the road,
              21-'id': id
              22-'startIntersection: road start,
@@ -322,7 +356,7 @@ class World(object):
                 line = line.rstrip('\n').split(' ')
                 if ('' in line):
                     line.remove('')
-                if (len(line) == 1):  # this is notation 
+                if (len(line) == 1):  # this is notation
                     if cnt == 0:
                         agent_num = int(line[0])  # start intersection segment
                         cnt += 1
@@ -338,18 +372,19 @@ class World(object):
                         result['intersections'].update({
                             # No width, No detailed information about road links
                             int(line[2]): {'point': {'x': float(line[0]), 'y': float(line[1])}, 'direction': {}, 'id': int(line[2]),
-                            'virtual': bool(abs(1 -int(line[3]))), 'start_roads': [], 'end_roads': [], 'roads': [], 'road_lane_mapping': {}}
+                                           'virtual': bool(abs(1 - int(line[3]))), 'start_roads': [], 'end_roads': [], 'roads': [],
+                                           'road_lane_mapping': {}}
                             # TODO: laneLinks, roadLinks maybe important
-                            }
+                        }
                         )
-                    if cnt == 2: # road processing
+                    if cnt == 2:  # road processing
                         if len(line) != 8:
                             road_id = pre_road[is_obverse]
-                            # add road details in the last line generated road 
+                            # add road details in the last line generated road
                             result['roads'][road_id]['lanes'] = {}
                             for i in range(result['roads'][road_id]['Nlane']):
-  #!!!                          # TODO: two lanes ? 
-                                result['roads'][road_id]['lanes'][road_id*100+i] = list(map(int,line[i:i*3+3]))
+                                # !!!                          # TODO: two lanes ?
+                                result['roads'][road_id]['lanes'][road_id * 100 + i] = list(map(int, line[i:i * 3 + 3]))
                             is_obverse ^= 1
                         else:
                             # road is added here, then modified by code above
@@ -357,10 +392,10 @@ class World(object):
                                 # TODO: make sure there all lane in the same road shares the same maxspeed
                                 int(line[-2]): {'startIntersection': int(line[0]), 'endIntersection': int(line[1]),
                                                 'points': [{'x': result['intersections'][int(line[0])]['point']['x'],
-                                                             'y': result['intersections'][int(line[0])]['point']['y']
-                                                             },
-                                                            {'x': result['intersections'][int(line[1])]['point']['x'],
-                                                             'y': result['intersections'][int(line[1])]['point']['y']
+                                                            'y': result['intersections'][int(line[0])]['point']['y']
+                                                            },
+                                                           {'x': result['intersections'][int(line[1])]['point']['x'],
+                                                            'y': result['intersections'][int(line[1])]['point']['y']
                                                             }],
                                                 'length': float(line[2]), 'maxSpeed': float(line[3]), 'lanes': [],
                                                 'inverse': int(line[-1]), 'Nlane': int(line[4])}
@@ -370,12 +405,12 @@ class World(object):
                             result['roads'].update({
                                 int(line[-1]): {'startIntersection': int(line[1]), 'endIntersection': int(line[0]),
                                                 'points': [{'x': result['intersections'][int(line[1])]['point']['x'],
-                                                             'y': result['intersections'][int(line[1])]['point']['y']
-                                                             },
-                                                            {'x': result['intersections'][int(line[0])]['point']['x'],
-                                                             'y': result['intersections'][int(line[0])]['point']['y']
+                                                            'y': result['intersections'][int(line[1])]['point']['y']
+                                                            },
+                                                           {'x': result['intersections'][int(line[0])]['point']['x'],
+                                                            'y': result['intersections'][int(line[0])]['point']['y']
                                                             }],
-                                                'length': float(line[2]), 'maxSpeed': float(line[3]), 'lanes' : [],
+                                                'length': float(line[2]), 'maxSpeed': float(line[3]), 'lanes': [],
                                                 'Nlane': int(line[5]), 'inverse': int(line[-2])}
                             })
                             result['intersections'][int(line[0])]['end_roads'].append(int(line[-1]))
@@ -386,7 +421,7 @@ class World(object):
                             result['intersections'][int(line[0])]['roads'].append(int(line[-2]))
                             result['intersections'][int(line[1])]['start_roads'].append(int(line[-1]))
                             result['intersections'][int(line[1])]['roads'].append(int(line[-1]))
-                            pre_road = (int(line[-2]),int(line[-1]))
+                            pre_road = (int(line[-2]), int(line[-1]))
 
                     else:
                         pass
@@ -408,7 +443,7 @@ class World(object):
             road = result['roads'][road_idx]
             direction = _get_direction(road['points'])
             lane_in_road = road['lanes']
-                # append road's lane information to start intersection
+            # append road's lane information to start intersection
             road_lane_mapping = {}
             for lane_id in lane_in_road:
                 road_lane_mapping.update({lane_id: lane_in_road[lane_id]})
@@ -424,13 +459,13 @@ class World(object):
             result['intersections'][inter_2]['road_lane_mapping'].update({road_idx: road_lane_mapping})
         print('roads processed')
         return result
-    
+
     def step(self, action=None):
         if action is not None:
             for i, inter in enumerate(self.intersections):
                 # set phase within intersections
                 inter.psedo_step(action[i])
-        # TODO: so now we don't process delay and queue. just some basic metric first
+            # TODO: so now we don't process delay and queue. just some basic metric first
             self.eng.next_step()
             # update lane information of each intersection
             self._update_infos()
@@ -455,13 +490,13 @@ class World(object):
                     self.fns.append(fn)
             else:
                 raise Exception(f'Info function {fn} not implemented')
-    
+
     def reset(self):
         del self.eng
         gc.collect()
         self.eng = citypb.Engine(self.cfg_file, 12)
         self.intersections = [Intersection(self.roadnet["intersections"][i], self)
-            for i in self.roadnet["intersections"] if not self.roadnet["intersections"][i]["virtual"]]
+                              for i in self.roadnet["intersections"] if not self.roadnet["intersections"][i]["virtual"]]
         self.id2intersection = dict()
         self.vehicles = dict()
         self.vehicles_cur = dict()
@@ -479,7 +514,7 @@ class World(object):
         self.info = {}
         for fn in self.fns:
             self.info[fn] = self.info_functions[fn]()
-    
+
     def get_vehicles(self):
         pass
 
@@ -528,7 +563,7 @@ class World(object):
         return result
 
     def get_lane_queue_length(self):
-        # TODO: currently not working 
+        # TODO: currently not working
         result = dict()
         for inter in self.intersections:
             for key in inter.full_observation.keys():
@@ -563,8 +598,6 @@ class World(object):
     def get_cur_throughput(self):
         througput = len(self.vehicles)
         return throughput
-    
-
 
 if __name__ == "__main__":
     world = World(os.path.join(os.getcwd(), 'configs/openengine1x1.cfg'), 12)

@@ -1,26 +1,31 @@
-import json
-import os.path as osp
-import cityflow
-from common.registry import Registry
+# -*- coding: utf-8 -*-
+"""
+used to describe the World information.
+"""
 
-import numpy as np
-from math import atan2, pi
+import os
 import sys
+from sys import platform
+import argparse
+from collections import defaultdict
+import sympy
+from mpmath import degrees, radians
+import copy
+import math
+import json
+import xml.etree.cElementTree as ET
+import xml.dom.minidom
+from math import atan2, pi
 
 
-# TODO: THIS IS Y/X  But we keep it right now
-def _get_direction(road, out=True):
+def get_direction(road, out=True):
     '''
-    used for getting directions
-    Parameters
-    ----------
-    road
-    out
 
-    Returns
-    -------
-
+    :param road:
+    :param out:
+    :return:
     '''
+
     if out:
         x = road["points"][1]["x"] - road["points"][0]["x"]
         y = road["points"][1]["y"] - road["points"][0]["y"]
@@ -30,8 +35,11 @@ def _get_direction(road, out=True):
     tmp = atan2(x, y)
     return tmp if tmp >= 0 else (tmp + 2 * pi)
 
-
 class Intersection(object):
+    '''Intersection Class is mainly used for describing crossing information
+    and defining acting methods
+
+    '''
     def __init__(self, intersection, world):
         self.id = intersection["id"]
         self.eng = world.eng
@@ -57,7 +65,7 @@ class Intersection(object):
 
         # create yellow phases
         # in cityflow, yellow phases' id is 0
-        # in sumo, yellow phases' id is the first appeared in phases 
+        # in sumo, yellow phases' id is the first appeared in phases
         phases = intersection["trafficLight"]["lightphases"]
         self.all_phases = [i for i in range(len(phases))]
         if self.if_sumo:
@@ -101,11 +109,18 @@ class Intersection(object):
         self.reset()
 
     def insert_road(self, road, out):
+        '''insert_road
+
+        :param road:
+        :param out:
+        :return:
+        '''
         self.roads.append(road)
         self.outs.append(out)
         self.directions.append(_get_direction(road, out))
 
     def sort_roads(self, RIGHT):
+
         order = sorted(range(len(self.roads)),
                        key=lambda i: (self.directions[i], self.outs[i] if RIGHT else not self.outs[i]))
         self.roads = [self.roads[i] for i in order]
@@ -115,7 +130,18 @@ class Intersection(object):
         self.in_roads = [self.roads[i] for i, x in enumerate(self.outs) if not x]
 
     def _change_phase(self, phase, interval, typ='init'):
-        """phase: true phase id (including yellows)"""
+        '''
+        phase: true phase id (including yellows)
+        Parameters
+        ----------
+        phase
+        interval
+        typ
+
+        Returns
+        -------
+
+        '''
         self.eng.set_tl_phase(self.id, phase)
         self._current_phase = phase
         if typ == 'add':
@@ -124,6 +150,17 @@ class Intersection(object):
             self.current_phase_time = interval
 
     def step(self, action, interval):
+        '''
+        step is to take relative actions according to interval
+        Parameters
+        ----------
+        action
+        interval
+
+        Returns
+        -------
+
+        '''
         # if current phase is yellow, then continue to finish the yellow phase
         # recall self._current_phase means true phase id (including yellows)
         # self.current_phase means phase id in self.phases (excluding yellow)
@@ -152,6 +189,12 @@ class Intersection(object):
                     self.action_executed = action
 
     def reset(self):
+        '''
+        reset is to reset current_phase, tl_phase, current_phase_time, action_before_yellow and action_executed
+        Returns
+        -------
+
+        '''
         # record phase info
         self.current_phase = 0  # phase id in self.phases (excluding yellow)
         if len(self.phases) == 0:
@@ -164,11 +207,11 @@ class Intersection(object):
         self.action_executed = None
 
 
-@Registry.register_world('cityflow')
+# @Registry.register_world('cityflow')
 class World(object):
-    """
+    '''
     Create a CityFlow engine and maintain informations about CityFlow world
-    """
+    '''
 
     def __init__(self, cityflow_config, thread_num):
         print("building world...")
@@ -204,7 +247,7 @@ class World(object):
         # if len(self.intersection_ids) == 6:
         #     self.intersection_ids = self.intersection_ids[0:5]
         self.id2intersection = {i.id: i for i in self.intersections}
-        self.id2idx = {i: idx for idx,i in enumerate(self.id2intersection)}
+        self.id2idx = {i: idx for idx, i in enumerate(self.id2intersection)}
         print("intersections created.")
 
         # id of all roads and lanes
@@ -267,7 +310,12 @@ class World(object):
         print("world built.")
 
     def reset_vehicle_info(self):
-        """reset vehicle infos,including waiting_time, trajectory,etc."""
+        '''
+        reset vehicle infos,including waiting_time, trajectory,etc
+        Returns
+        -------
+
+        '''
         self.vehicle_waiting_time = {}  # key: vehicle_id, value: the waiting time of this vehicle since last halt.
         self.vehicle_trajectory = {}  # key: vehicle_id, value: [[lane_id_1, enter_time, time_spent_on_lane_1], ... , [lane_id_n, enter_time, time_spent_on_lane_n]]
         self.history_vehicles = set()
@@ -276,6 +324,16 @@ class World(object):
         self.dic_vehicle_arrive_leave_time = dict()
 
     def _update_arrive_time(self, list_vehicle_arrive):
+        '''
+        update_arrive_time
+        Parameters
+        ----------
+        list_vehicle_arrive
+
+        Returns
+        -------
+
+        '''
         ts = self.eng.get_current_time()
         # init vehicle enter leave time
         for vehicle in list_vehicle_arrive:
@@ -287,6 +345,16 @@ class World(object):
                 pass
 
     def _update_left_time(self, list_vehicle_left):
+        '''
+        update_left_time
+        Parameters
+        ----------
+        list_vehicle_left
+
+        Returns
+        -------
+
+        '''
         ts = self.eng.get_current_time()
         # update the time for vehicle to leave entering lane
         for vehicle in list_vehicle_left:
@@ -299,7 +367,24 @@ class World(object):
                 print("vehicle not recorded when entering!")
 
     def update_current_measurements(self):
+        '''
+        update_current_measurements
+        Returns
+        -------
+
+        '''
+
         def _change_lane_vehicle_dic_to_list(dic_lane_vehicle):
+            '''
+            change_lane_vehicle_dic_to_list
+            Parameters
+            ----------
+            dic_lane_vehicle
+
+            Returns
+            -------
+
+            '''
             list_lane_vehicle = []
             for value in dic_lane_vehicle.values():
                 if value:
@@ -318,9 +403,14 @@ class World(object):
             set(self.list_lane_vehicle_previous_step) - set(self.list_lane_vehicle_current_step))
         self._update_arrive_time(list_vehicle_new_arrive)
         self._update_left_time(list_vehicle_new_left)
-    
 
     def get_cur_throughput(self):
+        '''
+        get_cur_throughput
+        Returns
+        -------
+
+        '''
         throughput = 0
         for dic in self.dic_vehicle_arrive_leave_time:
             vehicle = self.dic_vehicle_arrive_leave_time[dic]
@@ -329,18 +419,36 @@ class World(object):
         return throughput
 
     def get_executed_action(self):
+        '''
+        get_executed_action
+        Returns
+        -------
+
+        '''
         actions = []
         for i in self.intersections:
             actions.append(i.action_executed)
         return actions
 
     def get_cur_phase(self):
+        '''
+        get_cur_phase
+        Returns
+        -------
+
+        '''
         phases = []
         for i in self.intersections:
             phases.append(i.current_phase)
         return phases
 
     def get_pressure(self):
+        '''
+        get_pressure
+        Returns
+        -------
+
+        '''
         vehicles = self.eng.get_lane_vehicle_count()
         pressures = {}
         for i in self.intersections:
@@ -365,30 +473,14 @@ class World(object):
             pressures[i.id] = pressure
         return pressures
 
-    # return [self.dic_lane_waiting_vehicle_count_current_step[lane] for lane in self.list_entering_lanes] + \
-    # [-self.dic_lane_waiting_vehicle_count_current_step[lane] for lane in self.list_exiting_lanes]
-
-    # def get_in_out_lanes(self):
-    #     in_lines = []
-    #     out_lines = []
-    #     for i in self.intersections:
-    #         for road in i.in_roads:
-    #             from_zero = (road["startIntersection"] == i.id) if self.RIGHT else (
-    #                     road["endIntersection"] == i.id)
-    #             for n in range(len(road["lanes"]))[::(1 if from_zero else -1)]:
-    #                 in_lines.append(road["id"] + "_" + str(n))
-    #         for road in i.out_roads:
-    #             from_zero = (road["endIntersection"] == i.id) if self.RIGHT else (
-    #                     road["startIntersection"] == i.id)
-    #             for n in range(len(road["lanes"]))[::(1 if from_zero else -1)]:
-    #                 out_lines.append(road["id"] + "_" + str(n))
-    #     # add in_lanes of virtual intersections which can be regarded as out_lanes of non-virtual intersections.
-    #     for lane in self.all_lanes:
-    #         if lane not in out_lines:
-    #             out_lines.append(lane)
-    #     return in_lines, out_lines
 
     def get_vehicle_lane(self):
+        '''
+        get_vehicle_lane
+        Returns
+        -------
+
+        '''
         # get the current lane of each vehicle. {vehicle_id: lane_id}
         vehicle_lane = {}
         lane_vehicles = self.eng.get_lane_vehicles()
@@ -398,6 +490,12 @@ class World(object):
         return vehicle_lane
 
     def get_vehicle_waiting_time(self):
+        '''
+        get_vehicle_waiting_time
+        Returns
+        -------
+
+        '''
         # the waiting time of vehicle since last halt.
         vehicles = self.eng.get_vehicles(include_waiting=False)
         vehicle_speed = self.eng.get_vehicle_speed()
@@ -411,6 +509,12 @@ class World(object):
         return self.vehicle_waiting_time
 
     def get_lane_waiting_time_count(self):
+        '''
+        get_lane_waiting_time_count
+        Returns
+        -------
+
+        '''
         # the sum of waiting times of vehicles on the lane since their last halt.
         lane_waiting_time = {}
         lane_vehicles = self.eng.get_lane_vehicles()
@@ -422,6 +526,12 @@ class World(object):
         return lane_waiting_time
 
     def get_lane_delay(self):
+        '''
+        get_lane_delay
+        Returns
+        -------
+
+        '''
         # the delay of each lane: 1 - lane_avg_speed/speed_limit
         lane_vehicles = self.eng.get_lane_vehicles()
         lane_delay = {}
@@ -443,6 +553,12 @@ class World(object):
         return lane_delay
 
     def get_vehicle_trajectory(self):
+        '''
+        get_vehicle_trajectory
+        Returns
+        -------
+
+        '''
         # lane_id and time spent on the corresponding lane that each vehicle went through
         vehicle_lane = self.get_vehicle_lane()
         vehicles = self.eng.get_vehicles(include_waiting=False)
@@ -460,6 +576,12 @@ class World(object):
         return self.vehicle_trajectory
 
     def get_history_vehicles(self):
+        '''
+        get_history_vehicles
+        Returns
+        -------
+
+        '''
         self.history_vehicles.update(self.eng.get_vehicles())
         return self.history_vehicles
 
@@ -475,18 +597,18 @@ class World(object):
              12-'point': 121: {'x', 'y'}(intersection at this position),
              13-'width': itersection width,
              14-'roads'(len=N_roads controled by this intersection): name of road
-             15-'roadLinks'(len=N_road links): 
+             15-'roadLinks'(len=N_road links):
                 {151-'type': diriction type(go_straight, turn_left, turn_right, turn_U),  # TODO: check turn_u
                  152-'startRoad': start road name,
                  153-'endRoad': end road name,
                  154-'direction': int(same as type)
-                 155-'laneLinks(len-N_lane links of road): 
+                 155-'laneLinks(len-N_lane links of road):
                     {1551-'startLaneIndex': int(lane index in start road),
                      1552-'endLaneIndex': int(lane index in end road),
                      1553-'points(N_points alone this lane': {'x', 'y'}(point pos)
                      }
                  },
-             16-'trafficLight: 
+             16-'trafficLight:
                 {161-'roadLinkIndices'(len=N_road links): [],
                  162-'lightphases'(len=N_phases): {1621-'time': int(time long),
                                                     1622-'availableRoadLinks'(len=N_working_roads): []
@@ -494,10 +616,10 @@ class World(object):
                  },
              17-'virtual': bool
              },
-         2-'roads'-(len=N_roads ): 
+         2-'roads'-(len=N_roads ):
             {21-'id': name of the road,
              22-'points': [221: {'x', 'y'}(start pos), 222: {'x', 'y'}(end pos)],
-             23-'lanes'-(N_lanes in this road): 
+             23-'lanes'-(N_lanes in this road):
                 231: [{'width': lane width, 'maxSpeed': max speed of each car on this lane}]
                  232-'startIntersection': lane start,
                  233-'endIntersection': lane end
@@ -511,6 +633,16 @@ class World(object):
         return roadnet
 
     def subscribe(self, fns):
+        '''
+        subscribe
+        Parameters
+        ----------
+        fns
+
+        Returns
+        -------
+
+        '''
         if isinstance(fns, str):
             fns = [fns]
         for fn in fns:
@@ -521,6 +653,16 @@ class World(object):
                 raise Exception("info function %s not exists" % fn)
 
     def step(self, actions=None):
+        '''
+        step
+        Parameters
+        ----------
+        actions
+
+        Returns
+        -------
+
+        '''
         #  update previous measurement
         self.dic_lane_vehicle_previous_step = self.dic_lane_vehicle_current_step
 
@@ -533,6 +675,12 @@ class World(object):
         self.update_current_measurements()
 
     def reset(self):
+        '''
+        reset the engine
+        Returns
+        -------
+
+        '''
         self.eng.reset()
         for I in self.intersections:
             I.reset()
@@ -541,22 +689,44 @@ class World(object):
         self.reset_vehicle_info()
 
     def _update_infos(self):
+        '''
+        _update_infos
+        Returns
+        -------
+
+        '''
         self.info = {}
         for fn in self.fns:
             self.info[fn] = self.info_functions[fn]()
 
     def get_info(self, info):
+        '''
+        get_info
+        Parameters
+        ----------
+        info
+
+        Returns
+        -------
+
+        '''
         return self.info[info]
 
     def get_average_travel_time(self):
+        '''
+        get_average_travel_time
+        Returns
+        -------
+
+        '''
         tvg_time = self.eng.get_average_travel_time()
         return [tvg_time, tvg_time]
 
     def get_lane_queue_length(self):
+        '''
+        get_lane_queue_length
+        Returns
+        -------
+
+        '''
         return self.eng.get_lane_waiting_vehicle_count()
-
-
-if __name__ == "__main__":
-    world = World("/mnt/d/Cityflow/tools/generator/configs.json", thread_num=1)
-    # print(len(world.intersections[0].startlanes))
-    print(world.intersections[0].phase_available_startlanes)

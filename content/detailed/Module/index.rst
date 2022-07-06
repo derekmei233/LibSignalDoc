@@ -3,11 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-World
+Module Structure
 =====================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 6
 
-
+   LibSignal.agent
+   LibSignal.dataset
+   LibSignal.generator
+   LibSignal.task
+   LibSignal.trainer
+   LibSignal.world
 

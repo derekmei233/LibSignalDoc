@@ -1,35 +1,32 @@
-import os
-import sys
-from math import atan2, pi
-import xml.etree.cElementTree as ET
-
-if 'SUMO_HOME' in os.environ:
-    tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
-    sys.path.append(tools)
-else:
-    sys.exit('No SUMO in environment path')
-from common.registry import Registry
+# -*- coding: utf-8 -*-
+"""
+used to describe the sumo world information
+"""
 
 import json
-import re
-import copy
-
-import sumolib
-import traci
-
-# TODO: change it in the future. Accoring to _get_direction
-DIRECTION_RANK = {'N': 0, 'W': 1, 'S': 2, 'E': 3}
+import xml.etree.cElementTree as ET
+import xml.dom.minidom
+from math import atan2, pi
 
 
-# TODO: revert x and y
 def _get_direction(road):
+    '''_get_direction
+
+    :param road:
+    :return:
+    '''
     x = road[1][0] - road[0][0]
     y = road[1][1] - road[0][1]
     tmp = atan2(x, y)
     return tmp if tmp >= 0 else (tmp + 2 * pi)
 
-
 def create_yellows(phases, yellow_length):
+    '''
+    create_yellows
+    :param phases:
+    :param yellow_length:
+    :return:
+    '''
     new_phases = copy.copy(phases)
     yellow_dict = {}    # current phase + next phase keyed to corresponding yellow phase index
     # Automatically create yellow phases, traci will report missing phases as it assumes execution by index order
@@ -252,8 +249,6 @@ class Intersection(object):
                     detectable.append(v)
         return detectable
 
-
-@Registry.register_world('sumo')
 class World(object):
     def __init__(self, sumo_config, placeholder=0):
         with open(sumo_config) as f:
@@ -548,7 +543,4 @@ class World(object):
         throughput = len(self.vehicles)
         # TODO: check if only trach left cars
         return throughput
-
-
-
 

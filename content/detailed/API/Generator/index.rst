@@ -3,15 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-API Introduction
+Generator
 =====================================
 
 .. toctree::
-   :maxdepth: 5
-   :caption: World:
+   :maxdepth: 4
 
-   World/index.rst
-   Agent/index.rst
-   Generator/index.rst
-   Metric/metric.md
+   base.rst
+   intersection_phase.rst
+   intersection_vehicle.rst
+   lane_vehicle.rst
 

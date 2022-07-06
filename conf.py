@@ -22,6 +22,9 @@ import sys
 # sys.path.insert(0, os.path.abspath('/home/danielsmith/PycharmProjects/WorkSpace/toolkit/officialdoc/codesrc'))
 sys.path.insert(0, os.path.relpath('./codepieces/temp/'))
 sys.path.insert(0, os.path.relpath('./codepieces/world/'))
+sys.path.insert(0, os.path.relpath('./codepieces/generator/'))
+sys.path.insert(0, os.path.relpath('./codepieces/agent/'))
+
 # sys.path.insert(0, os.path.abspath('./codesrc/'))
 
 # sys.path.insert(0, os.path.abspath('/home/danielsmith/PycharmProjects/WorkSpace/toolkit/officialdoc/codesrc/LibSignal/common'))

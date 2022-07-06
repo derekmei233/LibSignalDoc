@@ -11,4 +11,7 @@ API Introduction
    :caption: World:
 
    World/index.rst
+   Agent/index.rst
+   Generator/index.rst
+   Metric/metric.md
 

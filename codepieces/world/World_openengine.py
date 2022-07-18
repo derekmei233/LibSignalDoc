@@ -114,7 +114,7 @@ class Intersection(object):
         self.out_roads = [self.roads[i] for i, x in enumerate(self.outs) if x]
         self.in_roads = [self.roads[i] for i, x in enumerate(self.outs) if not x]
 
-    def reset():
+    def reset(self):
         '''
 
         :return:
@@ -461,6 +461,11 @@ class World(object):
         return result
 
     def step(self, action=None):
+        '''
+        take one step forward base on the input action
+        :param action:
+        :return:
+        '''
         if action is not None:
             for i, inter in enumerate(self.intersections):
                 # set phase within intersections
@@ -482,6 +487,10 @@ class World(object):
             raise Exception('provide action in RL or need some spefic design for non-RL agents')
 
     def subscribe(self, fns):
+        '''
+        :param fns:
+        :return:
+        '''
         if isinstance(fns, str):
             fns = [fns]
         for fn in fns:
@@ -492,6 +501,10 @@ class World(object):
                 raise Exception(f'Info function {fn} not implemented')
 
     def reset(self):
+        '''
+
+        :return:
+        '''
         del self.eng
         gc.collect()
         self.eng = citypb.Engine(self.cfg_file, 12)
@@ -508,17 +521,31 @@ class World(object):
         self._update_infos()
 
     def get_info(self, info):
+        '''
+
+        :param info:
+        :return:
+        '''
         return self.info[info]
 
     def _update_infos(self):
+        '''
+
+        :return:
+        '''
         self.info = {}
         for fn in self.fns:
             self.info[fn] = self.info_functions[fn]()
 
     def get_vehicles(self):
+
         pass
 
     def get_lane_vehicle_count(self):
+        '''
+
+        :return:
+        '''
         # TODO: This is the test, try observe from full_observation later
         result = {k: 0 for k in self.all_lanes}
         result_update = self.eng.get_lane_vehicle_count()
@@ -530,6 +557,10 @@ class World(object):
         pass
 
     def get_lane_waiting_time_count(self):
+        '''
+
+        :return:
+        '''
         # this is the test
         result = dict()
         for intsec in self.intersections:
@@ -538,6 +569,10 @@ class World(object):
         return result
 
     def get_lane_waiting_vehicle_count(self):
+        '''
+
+        :return:
+        '''
         result = dict()
         for intsec in self.intersections:
             for lane in intsec.lanes:
@@ -545,16 +580,28 @@ class World(object):
         return result
 
     def get_cur_phase(self):
+        '''
+
+        :return:
+        '''
         result = list()
         for intsec in self.intersections:
             result.append(intsec.current_phase)
         return result
 
     def get_average_travel_time(self):
+        '''
+
+        :return:
+        '''
         # TODO: wrap it to see if needed
         return self.eng.get_average_travel_time()
 
     def get_lane_vehicles(self):
+        '''
+
+        :return:
+        '''
         # provided directly from engine, but not working at the few steps since 0 car lanes won't whow in the dictionary
         result = {k: 0 for k in self.all_lanes}
         result_update = self.eng.get_lane_vehicle_count()
@@ -563,6 +610,10 @@ class World(object):
         return result
 
     def get_lane_queue_length(self):
+        '''
+
+        :return:
+        '''
         # TODO: currently not working
         result = dict()
         for inter in self.intersections:
@@ -571,6 +622,10 @@ class World(object):
         return result
 
     def get_lane_delay(self):
+        '''
+
+        :return:
+        '''
         # the delay of each lane: 1 - lane_avg_speed/speed_limit
         # set speed limit to 11.11 by default
         cur_lane_records = dict()
@@ -596,10 +651,15 @@ class World(object):
         return lane_delay
 
     def get_cur_throughput(self):
+        '''
+
+        :return:
+        '''
         througput = len(self.vehicles)
         return throughput
 
 if __name__ == "__main__":
+
     world = World(os.path.join(os.getcwd(), 'configs/openengine1x1.cfg'), 12)
     warm_up_time = 3600
     start_time = time.time()

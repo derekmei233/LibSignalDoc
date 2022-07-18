@@ -47,6 +47,10 @@ def create_yellows(phases, yellow_length):
 
 
 class Intersection(object):
+    '''
+    Intersection Class is mainly used for describing crossing information
+        and defining acting methods
+    '''
     def __init__(self, id, world, phases):
         self.id = id
         self.world = world
@@ -140,6 +144,10 @@ class Intersection(object):
         self.in_roads = [self.roads[i] for i, x in enumerate(self.outs) if not x]  # TODO: check if its 4
 
     def reset(self):
+        '''
+
+        :return:
+        '''
         self.current_phase_time = 0
         self.virtual_phase = 0
         self.next_phase = 0
@@ -155,10 +163,19 @@ class Intersection(object):
         self.eng.trafficlight.setProgramLogic(self.id, logic)
 
     def get_current_phase(self):
+        '''
+
+        :return:
+        '''
         return self.eng.trafficlight.getPhase(self.id)
 
     # TODO: change cityflow phase generator into phase property
     def prep_phase(self, new_phase):
+        '''
+
+        :param new_phase:
+        :return:
+        '''
         if self.get_current_phase() == new_phase:
             self.next_phase = self.get_current_phase()
             self.eng.trafficlight.setPhase(self.id, self.next_phase)
@@ -173,10 +190,20 @@ class Intersection(object):
                 self.current_phase = self.get_current_phase()
 
     def _change_phase(self, phase):
+        '''
+
+        :param phase:
+        :return:
+        '''
         self.eng.trafficlight.setPhase(self.id, phase)
         self.current_phase = self.get_current_phase()
 
     def pseudo_step(self, action):
+        '''
+
+        :param action:
+        :return:
+        '''
         # TODO: check if change state, yellow phase must less than minimum of action time
         # test yellow finished first
         self.virtual_phase = action
@@ -195,6 +222,12 @@ class Intersection(object):
         self.current_phase_time += 1
 
     def observe(self, step_length, distance):
+        '''
+
+        :param step_length:
+        :param distance:
+        :return:
+        '''
         full_observation = dict()
         all_vehicles = set()
         for lane in self.lanes:
@@ -250,6 +283,9 @@ class Intersection(object):
         return detectable
 
 class World(object):
+    '''
+    World Class to describe the agent's environment
+    '''
     def __init__(self, sumo_config, placeholder=0):
         with open(sumo_config) as f:
             sumo_dict = json.load(f)
@@ -346,6 +382,10 @@ class World(object):
         # test generate observation information
 
     def generate_valid_phase(self):
+        '''generate_valid_phase
+
+        :return:
+        '''
         valid_phases = dict()
         for i in range(0, 500):    # TODO grab info. directly from tllogic python interface
             for lightID in self.intersection_ids:
@@ -369,11 +409,20 @@ class World(object):
         return valid_phases
 
     def step_sim(self):
+        '''step_sim
+
+        :return:
+        '''
         # The monaco scenario expects .25s steps instead of 1s, account for that here.
         for _ in range(self.step_ratio):
             self.eng.simulationStep()
 
     def step(self, action=None):
+        '''step
+
+        :param action:
+        :return:
+        '''
         # TODO: support interval != 1
         if action is not None:
             for i, intersection in enumerate(self.intersections):
@@ -393,6 +442,10 @@ class World(object):
         self.run += 1
 
     def reset(self):
+        '''reset
+
+        :return:
+        '''
         if self.run != 0:
             # TODO: test why need switch in original code
             traci.close()
@@ -419,10 +472,18 @@ class World(object):
             self.inside_vehicles.update({v: self.get_current_time()})
 
     def get_current_time(self):
+        '''get_current_time
+
+        :return:
+        '''
         result = self.eng.simulation.getTime()
         return result
 
     def get_vehicles(self):
+        '''get_vehicles
+
+        :return:
+        '''
         assert len(self.vehicles) == len(self.vehicles_planned)
         result = 0
         result_planned = 0
@@ -437,6 +498,11 @@ class World(object):
             return [result/count, result_planned/count]
 
     def subscribe(self, fns):
+        '''
+
+        :param fns:
+        :return:
+        '''
         if isinstance(fns, str):
             fns = [fns]
         for fn in fns:
@@ -447,6 +513,11 @@ class World(object):
                 raise Exception(f'Info function {fn} not implemented')
 
     def get_info(self, info):
+        '''
+
+        :param info:
+        :return:
+        '''
         return self.info[info]
 
     def _update_infos(self):
@@ -455,6 +526,10 @@ class World(object):
             self.info[fn] = self.info_functions[fn]()
 
     def get_lane_vehicle_count(self):
+        '''
+
+        :return:
+        '''
         result = dict()
         for intsec in self.intersections:
             for lane in intsec.lanes:
@@ -465,6 +540,10 @@ class World(object):
         pass
 
     def get_lane_waiting_time_count(self):
+        '''
+
+        :return:
+        '''
         result = dict()
         for intsec in self.intersections:
             for lane in intsec.lanes:
@@ -472,6 +551,10 @@ class World(object):
         return result
 
     def get_lane_waiting_vehicle_count(self):
+        '''
+
+        :return:
+        '''
         result = dict()
         for intsec in self.intersections:
             for lane in intsec.lanes:
@@ -479,18 +562,27 @@ class World(object):
         return result
 
     def get_cur_phase(self):
+        '''
+
+        :return:
+        '''
         result = []
         for intsec in self.intersections:
             result.append(intsec.get_current_phase())
         return result
 
     def get_average_travel_time(self):
-        """
-        return: [real travel time, planned travel time(aligned with Cityflow)]
-        """
+        '''
+
+        :return: [real travel time, planned travel time(aligned with Cityflow)]
+        '''
         return self.get_vehicles()
 
     def get_lane_vehicles(self):
+        '''
+
+        :return:
+        '''
         result = dict()
         for inter in self.intersections:
             for key in inter.full_observation.keys():
@@ -498,6 +590,10 @@ class World(object):
         return result
 
     def get_lane_queue_length(self):
+        '''
+
+        :return:
+        '''
         #TODO: CHECK DEFINATION
         result = dict()
         for inter in self.intersections:
@@ -506,6 +602,10 @@ class World(object):
         return result
 
     def get_lane_delay(self):
+        '''
+
+        :return:
+        '''
         # the delay of each lane: 1 - lane_avg_speed/speed_limit
         # set speed limit to 11.11 by default
         lane_vehicles = self.get_lane_vehicles()
@@ -540,6 +640,10 @@ class World(object):
         return vehicles_all
 
     def get_cur_throughput(self):
+        '''get_cur_throughput
+
+        :return:
+        '''
         throughput = len(self.vehicles)
         # TODO: check if only trach left cars
         return throughput

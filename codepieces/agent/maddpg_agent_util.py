@@ -368,7 +368,7 @@ class MultiDiscrete(gym.Space):
     def contains(self, x):
         return len(x) == self.num_discrete_space and (np.array(x) >= self.low).all() and (np.array(x) <= self.high).all()
 
-    @property
+    # @property
     def shape(self):
         return self.num_discrete_space
     def __repr__(self):
@@ -521,7 +521,7 @@ class CategoricalPd(Pd):
     def sample(self):
         u = tf.random_uniform(tf.shape(self.logits))
         return argmax(self.logits - tf.log(-tf.log(u)), axis=1)
-    @classmethod
+    # @classmethod
     def fromflat(cls, flat):
         return cls(flat)
 
@@ -552,7 +552,7 @@ class SoftCategoricalPd(Pd):
     def sample(self):
         u = tf.random_uniform(tf.shape(self.logits))
         return softmax(self.logits - tf.log(-tf.log(u)), axis=-1)
-    @classmethod
+    # @classmethod
     def fromflat(cls, flat):
         return cls(flat)
 
@@ -575,7 +575,7 @@ class MultiCategoricalPd(Pd):
         return tf.add_n([p.entropy() for p in self.categoricals])
     def sample(self):
         return self.low + tf.cast(tf.stack([p.sample() for p in self.categoricals], axis=-1), tf.int32)
-    @classmethod
+    # @classmethod
     def fromflat(cls, flat):
         return cls(flat)
 
@@ -604,7 +604,7 @@ class SoftMultiCategoricalPd(Pd):  # doesn't work yet
         for i in range(len(self.categoricals)):
             x.append(self.low[i] + self.categoricals[i].sample())
         return tf.concat(x, axis=-1)
-    @classmethod
+    # @classmethod
     def fromflat(cls, flat):
         return cls(flat)
 
@@ -630,7 +630,7 @@ class DiagGaussianPd(Pd):
         return sum(self.logstd + .5 * np.log(2.0 * np.pi * np.e), 1)
     def sample(self):
         return self.mean + self.std * tf.random_normal(tf.shape(self.mean))
-    @classmethod
+    # @classmethod
     def fromflat(cls, flat):
         return cls(flat)
 
@@ -652,7 +652,7 @@ class BernoulliPd(Pd):
         p = tf.sigmoid(self.logits)
         u = tf.random_uniform(tf.shape(p))
         return tf.to_float(math_ops.less(u, p))
-    @classmethod
+    # @classmethod
     def fromflat(cls, flat):
         return cls(flat)
 

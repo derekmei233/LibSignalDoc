@@ -6,7 +6,7 @@ import random
 import numpy as np
 
 
-@Registry.register_model('rl')
+# @Registry.register_model('rl')
 class RLAgent(BaseAgent):
     def __init__(self, world, intersection_ids):
         super().__init__(world)

@@ -8,7 +8,6 @@ API Introduction
 
 .. toctree::
    :maxdepth: 5
-   :caption: World:
 
    World/index.rst
    Agent/index.rst

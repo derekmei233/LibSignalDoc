@@ -5,7 +5,7 @@ import numpy as np
 import gym
 
 
-@Registry.register_model('maxpressure')
+# @Registry.register_model('maxpressure')
 class MaxPressureAgent(BaseAgent):
     """
     Agent using Max-Pressure method to control traffic light

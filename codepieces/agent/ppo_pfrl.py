@@ -34,7 +34,7 @@ def lecun_init(layer, gain=1.0):
     return layer
 
 
-@Registry.register_model('ppo_pfrl')
+# @Registry.register_model('ppo_pfrl')
 class IPPO_pfrl(RLAgent):
     def __init__(self, world, rank):
         super().__init__(world, world.intersection_ids[rank])

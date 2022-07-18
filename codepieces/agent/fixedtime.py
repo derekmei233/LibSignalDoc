@@ -4,7 +4,7 @@ from generator import LaneVehicleGenerator, IntersectionPhaseGenerator, Intersec
 import numpy as np
 import gym
 
-@Registry.register_model('fixedtime')
+# @Registry.register_model('fixedtime')
 class FixedTimeAgent(BaseAgent):
     """
     Agent using Max-Pressure method to control traffic light

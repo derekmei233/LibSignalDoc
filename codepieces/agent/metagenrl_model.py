@@ -317,7 +317,7 @@ class Objective:
 
         return future_policy_value
 
-    @property
+    # @property
     def variables(self):
         return self.objective.trainable_variables
 

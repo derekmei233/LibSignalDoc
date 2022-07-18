@@ -217,7 +217,7 @@ class Intersection(object):
 
 class World(object):
     """
-    Create a Citypb engine and maintain infromations about Citypb world
+    Create an engine and maintain infromations about world
     """
 
     def __init__(self, citypb_config, thread_num):

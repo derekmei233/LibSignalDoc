@@ -20,7 +20,7 @@ from torch_geometric.data import Data, Batch
 from torch_geometric.utils import add_self_loops
 
 
-@Registry.register_model('colight')
+# @Registry.register_model('colight')
 class CoLightAgent(RLAgent):
     #  TODO: test multiprocessing effect on agents or need deep copy here
     def __init__(self, world, rank):

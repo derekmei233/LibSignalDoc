@@ -5,7 +5,7 @@ import numpy as np
 import gym
 
 
-@Registry.register_model('sotl')
+# @Registry.register_model('sotl')
 class SOTLAgent(BaseAgent):
     """
     Agent using Self-organizing Traffic Light(SOTL) Control method to control traffic light

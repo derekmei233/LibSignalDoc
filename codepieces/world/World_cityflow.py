@@ -18,7 +18,7 @@ import xml.dom.minidom
 from math import atan2, pi
 
 
-def get_direction(road, out=True):
+def _get_direction(road, out=True):
     '''get_direction
 
     :param road:
@@ -111,15 +111,23 @@ class Intersection(object):
     def insert_road(self, road, out):
         '''insert_road
 
-        :param road:
-        :param out:
-        :return:
+        It's used to append a road into self.road
+        meanwhile, add the corresponding direction with the added road
+
+        :param road: newly added road
+        :param out: newly added out
+        :return: empty
         '''
         self.roads.append(road)
         self.outs.append(out)
         self.directions.append(_get_direction(road, out))
 
     def sort_roads(self, RIGHT):
+        '''
+        To sort roads information by arranging an order
+        :param RIGHT:
+        :return:
+        '''
 
         order = sorted(range(len(self.roads)),
                        key=lambda i: (self.directions[i], self.outs[i] if RIGHT else not self.outs[i]))
@@ -131,16 +139,11 @@ class Intersection(object):
 
     def _change_phase(self, phase, interval, typ='init'):
         '''
-        phase: true phase id (including yellows)
-        Parameters
-        ----------
-        phase
-        interval
-        typ
 
-        Returns
-        -------
-
+        :param phase:
+        :param interval:
+        :param typ:
+        :return:
         '''
         self.eng.set_tl_phase(self.id, phase)
         self._current_phase = phase
@@ -152,15 +155,12 @@ class Intersection(object):
     def step(self, action, interval):
         '''
         step is to take relative actions according to interval
-        Parameters
-        ----------
-        action
-        interval
+        :param action: the changes to take
+        :param interval: the non-acting time slice
 
-        Returns
-        -------
-
+        :return:
         '''
+
         # if current phase is yellow, then continue to finish the yellow phase
         # recall self._current_phase means true phase id (including yellows)
         # self.current_phase means phase id in self.phases (excluding yellow)
@@ -190,10 +190,8 @@ class Intersection(object):
 
     def reset(self):
         '''
-        reset is to reset current_phase, tl_phase, current_phase_time, action_before_yellow and action_executed
-        Returns
-        -------
-
+        The function is to reset current_phase, tl_phase, current_phase_time, action_before_yellow and action_executed
+        :return:
         '''
         # record phase info
         self.current_phase = 0  # phase id in self.phases (excluding yellow)
@@ -312,9 +310,7 @@ class World(object):
     def reset_vehicle_info(self):
         '''
         reset vehicle infos,including waiting_time, trajectory,etc
-        Returns
-        -------
-
+        :return:
         '''
         self.vehicle_waiting_time = {}  # key: vehicle_id, value: the waiting time of this vehicle since last halt.
         self.vehicle_trajectory = {}  # key: vehicle_id, value: [[lane_id_1, enter_time, time_spent_on_lane_1], ... , [lane_id_n, enter_time, time_spent_on_lane_n]]
@@ -655,14 +651,9 @@ class World(object):
 
     def step(self, actions=None):
         '''
-        step
-        Parameters
-        ----------
-        actions
-
-        Returns
-        -------
-
+        step: to take one time action
+        :param actions:
+        :return:
         '''
         #  update previous measurement
         self.dic_lane_vehicle_previous_step = self.dic_lane_vehicle_current_step
@@ -715,10 +706,9 @@ class World(object):
 
     def get_average_travel_time(self):
         '''
-        get_average_travel_time
-        Returns
-        -------
 
+        get_average_travel_time
+        :return:
         '''
         tvg_time = self.eng.get_average_travel_time()
         return [tvg_time, tvg_time]
@@ -726,8 +716,6 @@ class World(object):
     def get_lane_queue_length(self):
         '''
         get_lane_queue_length
-        Returns
-        -------
-
+        :return:
         '''
         return self.eng.get_lane_waiting_vehicle_count()

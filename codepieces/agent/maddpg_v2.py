@@ -18,7 +18,7 @@ import torch.optim as optim
 from torch.nn.utils import clip_grad_norm_
 
 
-@Registry.register_model('maddpg_v2')
+# @Registry.register_model('maddpg_v2')
 class MADDPGAgent(RLAgent):
     def __init__(self, world, rank):
         super().__init__(world, world.intersection_ids[rank])

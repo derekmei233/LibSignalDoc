@@ -14,7 +14,7 @@ from torch.nn.utils import clip_grad_norm_
 from generator import LaneVehicleGenerator, IntersectionPhaseGenerator, IntersectionVehicleGenerator
 
 
-@Registry.register_model('presslight')
+# @Registry.register_model('presslight')
 class PressLightAgent(RLAgent):
     def __init__(self, world, rank):
         super().__init__(world,world.intersection_ids[rank])

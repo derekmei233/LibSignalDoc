@@ -1,8 +1,8 @@
-from . import BaseAgent
-from common.registry import Registry
-from generator import LaneVehicleGenerator, IntersectionPhaseGenerator, IntersectionVehicleGenerator
-import numpy as np
-import gym
+# from . import BaseAgent
+# from common.registry import Registry
+# from generator import LaneVehicleGenerator, IntersectionPhaseGenerator, IntersectionVehicleGenerator
+# import numpy as np
+# import gym
 
 
 @Registry.register_model('maxpressure')

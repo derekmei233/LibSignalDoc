@@ -1,4 +1,4 @@
-from collections import OrderedDict
+# from collections import OrderedDict
 
 import tensorflow as tf
 import tensorflow.contrib as tfc

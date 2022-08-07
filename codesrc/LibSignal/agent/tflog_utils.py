@@ -1,5 +1,5 @@
-import numpy as np
-import tensorflow as tf
+# import numpy as np
+# import tensorflow as tf
 
 
 def log_histogram(summary, tag, values, bins=1000):

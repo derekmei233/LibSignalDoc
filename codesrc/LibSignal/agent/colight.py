@@ -1,23 +1,23 @@
-from . import RLAgent
-from common.registry import Registry
-import numpy as np
-import os
-import random
-from collections import OrderedDict, deque
-import gym
-
-from generator.lane_vehicle import LaneVehicleGenerator
-from generator.intersection_phase import IntersectionPhaseGenerator
-import torch
-from torch import nn
-import torch.nn.functional as F
-import torch_scatter
-import torch.optim as optim
-from torch.nn.utils import clip_grad_norm_
-
-from torch_geometric.nn import MessagePassing
-from torch_geometric.data import Data, Batch
-from torch_geometric.utils import add_self_loops
+# from . import RLAgent
+# from common.registry import Registry
+# import numpy as np
+# import os
+# import random
+# from collections import OrderedDict, deque
+# import gym
+#
+# from generator.lane_vehicle import LaneVehicleGenerator
+# from generator.intersection_phase import IntersectionPhaseGenerator
+# import torch
+# from torch import nn
+# import torch.nn.functional as F
+# import torch_scatter
+# import torch.optim as optim
+# from torch.nn.utils import clip_grad_norm_
+#
+# from torch_geometric.nn import MessagePassing
+# from torch_geometric.data import Data, Batch
+# from torch_geometric.utils import add_self_loops
 
 
 @Registry.register_model('colight')

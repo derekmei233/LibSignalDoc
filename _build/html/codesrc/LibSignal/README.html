@@ -14,6 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -73,16 +74,16 @@
            <div itemprop="articleBody">
              
   <section id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
 <p>This repo provides OpenAI Gym compatible environments for traffic light control scenario and a bunch of baseline methods.</p>
 <p>Environments include single intersetion (single-agent) and multi intersections (multi-agents) with different road network and traffic flow settings.</p>
 <p>Baselines include traditional Taffic Signal Control algorithms and reinforcement learning based methods.</p>
 <p>LibSignal is a cross-simulator environment that provides multiple traditional and Reinforcement Learning models in traffic control tasks. Currently, we support SUMO, CityFlow, and CBEine simulation environments. Conversion between SUMO and CityFlow is carefully calibrated.</p>
 </section>
 <section id="install">
-<h1>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
+<h1>Install<a class="headerlink" href="#install" title="Permalink to this heading">¶</a></h1>
 <section id="source">
-<h2>Source<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h2>
+<h2>Source<a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
 <p>LibSingal provides installation from source code.
 Please execute the following command to install and configure  our environment.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">DaRL</span>
@@ -92,11 +93,11 @@ Please execute the following command to install and configure  our environment.<
 </div>
 </section>
 <section id="simulator-environment-configuration">
-<h2>Simulator environment configuration<a class="headerlink" href="#simulator-environment-configuration" title="Permalink to this headline">¶</a></h2>
+<h2>Simulator environment configuration<a class="headerlink" href="#simulator-environment-configuration" title="Permalink to this heading">¶</a></h2>
 <br />
 Though CityFlow and SUMO are stable under Windows and Linux systems, we still recommend users work under the Linux system. Currently, CBEngine is stable under the Linux system.<br><br>
 <section id="cityflow-environment">
-<h3>CityFlow Environment<a class="headerlink" href="#cityflow-environment" title="Permalink to this headline">¶</a></h3>
+<h3>CityFlow Environment<a class="headerlink" href="#cityflow-environment" title="Permalink to this heading">¶</a></h3>
 <br />
 <p>To install CityFlow simulator, please follow the instruction on <a class="reference external" href="https://cityflow.readthedocs.io/en/latest/install.html#">CityFlow Doc</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span> <span class="n">cmake</span>
@@ -114,7 +115,7 @@ Though CityFlow and SUMO are stable under Windows and Linux systems, we still re
 <br>
 </section>
 <section id="sumo-environment">
-<h3>SUMO Environment<a class="headerlink" href="#sumo-environment" title="Permalink to this headline">¶</a></h3>
+<h3>SUMO Environment<a class="headerlink" href="#sumo-environment" title="Permalink to this heading">¶</a></h3>
 <br />
 <p>To install SUMO environment, please follow the instruction on <a class="reference external" href="https://epics-sumo.sourceforge.io/sumo-install.html#">SUMO Doc</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo apt-get install cmake python g++ libxerces-c-dev libfox-1.6-dev libgdal-dev libproj-dev libgl2ps-dev swig
@@ -145,14 +146,14 @@ make -j$(nproc)
 <br>
 </section>
 <section id="cbengine">
-<h3>CBEngine<a class="headerlink" href="#cbengine" title="Permalink to this headline">¶</a></h3>
+<h3>CBEngine<a class="headerlink" href="#cbengine" title="Permalink to this heading">¶</a></h3>
 <br />
 <p>CBEngine currently works stably under the Linux system; we highly recommend users choose Linux if we plan to conduct experiments under the CBEinge simulation environment. (Currently not available)</p>
 <br>
 </section>
 </section>
 <section id="requirment">
-<h2>Requirment<a class="headerlink" href="#requirment" title="Permalink to this headline">¶</a></h2>
+<h2>Requirment<a class="headerlink" href="#requirment" title="Permalink to this heading">¶</a></h2>
 <br />
 <p>Our code is based on Python version 3.9 and Pytorch version 1.11.0. For example, if your CUDA version is 11.3 you can follow the instruction on <a class="reference external" href="https://pytorch.org/get-started/locally/">PyTorch</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">torch</span> <span class="n">torchvision</span> <span class="n">torchaudio</span> <span class="o">--</span><span class="n">extra</span><span class="o">-</span><span class="n">index</span><span class="o">-</span><span class="n">url</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">pytorch</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">whl</span><span class="o">/</span><span class="n">cu113</span>
@@ -162,7 +163,7 @@ make -j$(nproc)
 </div>
 </section>
 <section id="selective-agents">
-<h2>Selective agents<a class="headerlink" href="#selective-agents" title="Permalink to this headline">¶</a></h2>
+<h2>Selective agents<a class="headerlink" href="#selective-agents" title="Permalink to this heading">¶</a></h2>
 <br />
 <p>We also support agents implemented based on other libraries</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Colight Geometric implementation based on default environment mentioned in Requirment</span>
@@ -181,9 +182,9 @@ make -j$(nproc)
 </section>
 </section>
 <section id="start">
-<h1>Start<a class="headerlink" href="#start" title="Permalink to this headline">¶</a></h1>
+<h1>Start<a class="headerlink" href="#start" title="Permalink to this heading">¶</a></h1>
 <section id="run-model-pipline">
-<h2>Run Model Pipline<a class="headerlink" href="#run-model-pipline" title="Permalink to this headline">¶</a></h2>
+<h2>Run Model Pipline<a class="headerlink" href="#run-model-pipline" title="Permalink to this heading">¶</a></h2>
 <p>Our library has a uniform structure that empowers users to start their experiments with just one click. Users can start an experiment by setting arguments in the run.py file and start with their customized settings. The following part is the arguments provided to customize.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span>
 </pre></div>

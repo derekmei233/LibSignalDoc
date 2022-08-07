@@ -14,6 +14,7 @@
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
@@ -77,17 +78,17 @@
            <div itemprop="articleBody">
              
   <section id="module-maddpg_agent_util">
-<span id="maddpg-agent-util-module"></span><h1>maddpg_agent_util module<a class="headerlink" href="#module-maddpg_agent_util" title="Permalink to this headline">¶</a></h1>
+<span id="maddpg-agent-util-module"></span><h1>maddpg_agent_util module<a class="headerlink" href="#module-maddpg_agent_util" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.BatchInput">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">BatchInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">tf.float32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.BatchInput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PlacholderTfInput" title="maddpg_agent_util.PlacholderTfInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.PlacholderTfInput</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PlacholderTfInput" title="maddpg_agent_util.PlacholderTfInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">PlacholderTfInput</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.BernoulliPd">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">BernoulliPd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logits</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.BernoulliPd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.Pd" title="maddpg_agent_util.Pd"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.Pd</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.Pd" title="maddpg_agent_util.Pd"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pd</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.BernoulliPd.entropy">
 <span class="sig-name descname"><span class="pre">entropy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.BernoulliPd.entropy" title="Permalink to this definition">¶</a></dt>
@@ -128,7 +129,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.BernoulliPdType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">BernoulliPdType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.BernoulliPdType" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PdType" title="maddpg_agent_util.PdType"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.PdType</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PdType" title="maddpg_agent_util.PdType"><code class="xref py py-class docutils literal notranslate"><span class="pre">PdType</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.BernoulliPdType.param_shape">
 <span class="sig-name descname"><span class="pre">param_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.BernoulliPdType.param_shape" title="Permalink to this definition">¶</a></dt>
@@ -154,7 +155,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.CategoricalPd">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">CategoricalPd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logits</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.CategoricalPd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.Pd" title="maddpg_agent_util.Pd"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.Pd</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.Pd" title="maddpg_agent_util.Pd"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pd</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.CategoricalPd.entropy">
 <span class="sig-name descname"><span class="pre">entropy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.CategoricalPd.entropy" title="Permalink to this definition">¶</a></dt>
@@ -195,7 +196,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.CategoricalPdType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">CategoricalPdType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ncat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.CategoricalPdType" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PdType" title="maddpg_agent_util.PdType"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.PdType</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PdType" title="maddpg_agent_util.PdType"><code class="xref py py-class docutils literal notranslate"><span class="pre">PdType</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.CategoricalPdType.param_shape">
 <span class="sig-name descname"><span class="pre">param_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.CategoricalPdType.param_shape" title="Permalink to this definition">¶</a></dt>
@@ -221,7 +222,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.DiagGaussianPd">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">DiagGaussianPd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.DiagGaussianPd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.Pd" title="maddpg_agent_util.Pd"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.Pd</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.Pd" title="maddpg_agent_util.Pd"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pd</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.DiagGaussianPd.entropy">
 <span class="sig-name descname"><span class="pre">entropy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.DiagGaussianPd.entropy" title="Permalink to this definition">¶</a></dt>
@@ -262,7 +263,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.DiagGaussianPdType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">DiagGaussianPdType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.DiagGaussianPdType" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PdType" title="maddpg_agent_util.PdType"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.PdType</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PdType" title="maddpg_agent_util.PdType"><code class="xref py py-class docutils literal notranslate"><span class="pre">PdType</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.DiagGaussianPdType.param_shape">
 <span class="sig-name descname"><span class="pre">param_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.DiagGaussianPdType.param_shape" title="Permalink to this definition">¶</a></dt>
@@ -288,7 +289,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.MultiCategoricalPd">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">MultiCategoricalPd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.MultiCategoricalPd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.Pd" title="maddpg_agent_util.Pd"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.Pd</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.Pd" title="maddpg_agent_util.Pd"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pd</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.MultiCategoricalPd.entropy">
 <span class="sig-name descname"><span class="pre">entropy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.MultiCategoricalPd.entropy" title="Permalink to this definition">¶</a></dt>
@@ -329,7 +330,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.MultiCategoricalPdType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">MultiCategoricalPdType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.MultiCategoricalPdType" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PdType" title="maddpg_agent_util.PdType"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.PdType</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PdType" title="maddpg_agent_util.PdType"><code class="xref py py-class docutils literal notranslate"><span class="pre">PdType</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.MultiCategoricalPdType.param_shape">
 <span class="sig-name descname"><span class="pre">param_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.MultiCategoricalPdType.param_shape" title="Permalink to this definition">¶</a></dt>
@@ -360,7 +361,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.MultiDiscrete">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">MultiDiscrete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array_of_param_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.MultiDiscrete" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">gym.spaces.space.Space</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Space</span></code></p>
 <ul class="simple">
 <li><p>The multi-discrete action space consists of a series of discrete action spaces with different parameters</p></li>
 <li><p>It can be adapted to both a Discrete action space or a continuous (Box) action space</p></li>
@@ -485,7 +486,7 @@ member of this space</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.PlacholderTfInput">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">PlacholderTfInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">placeholder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.PlacholderTfInput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.TfInput" title="maddpg_agent_util.TfInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.TfInput</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.TfInput" title="maddpg_agent_util.TfInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">TfInput</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.PlacholderTfInput.get">
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.PlacholderTfInput.get" title="Permalink to this definition">¶</a></dt>
@@ -562,7 +563,7 @@ the end of an episode and 0 otherwise.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.SoftCategoricalPd">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">SoftCategoricalPd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logits</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.SoftCategoricalPd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.Pd" title="maddpg_agent_util.Pd"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.Pd</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.Pd" title="maddpg_agent_util.Pd"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pd</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.SoftCategoricalPd.entropy">
 <span class="sig-name descname"><span class="pre">entropy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.SoftCategoricalPd.entropy" title="Permalink to this definition">¶</a></dt>
@@ -603,7 +604,7 @@ the end of an episode and 0 otherwise.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.SoftCategoricalPdType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">SoftCategoricalPdType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ncat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.SoftCategoricalPdType" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PdType" title="maddpg_agent_util.PdType"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.PdType</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PdType" title="maddpg_agent_util.PdType"><code class="xref py py-class docutils literal notranslate"><span class="pre">PdType</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.SoftCategoricalPdType.param_shape">
 <span class="sig-name descname"><span class="pre">param_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.SoftCategoricalPdType.param_shape" title="Permalink to this definition">¶</a></dt>
@@ -629,7 +630,7 @@ the end of an episode and 0 otherwise.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.SoftMultiCategoricalPd">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">SoftMultiCategoricalPd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.SoftMultiCategoricalPd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.Pd" title="maddpg_agent_util.Pd"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.Pd</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.Pd" title="maddpg_agent_util.Pd"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pd</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.SoftMultiCategoricalPd.entropy">
 <span class="sig-name descname"><span class="pre">entropy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.SoftMultiCategoricalPd.entropy" title="Permalink to this definition">¶</a></dt>
@@ -670,7 +671,7 @@ the end of an episode and 0 otherwise.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.SoftMultiCategoricalPdType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">SoftMultiCategoricalPdType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.SoftMultiCategoricalPdType" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PdType" title="maddpg_agent_util.PdType"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.PdType</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PdType" title="maddpg_agent_util.PdType"><code class="xref py py-class docutils literal notranslate"><span class="pre">PdType</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.SoftMultiCategoricalPdType.param_shape">
 <span class="sig-name descname"><span class="pre">param_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.SoftMultiCategoricalPdType.param_shape" title="Permalink to this definition">¶</a></dt>
@@ -720,7 +721,7 @@ of placeholder(s).</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="maddpg_agent_util.Uint8Input">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">maddpg_agent_util.</span></span><span class="sig-name descname"><span class="pre">Uint8Input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.Uint8Input" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PlacholderTfInput" title="maddpg_agent_util.PlacholderTfInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">maddpg_agent_util.PlacholderTfInput</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#maddpg_agent_util.PlacholderTfInput" title="maddpg_agent_util.PlacholderTfInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">PlacholderTfInput</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="maddpg_agent_util.Uint8Input.get">
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#maddpg_agent_util.Uint8Input.get" title="Permalink to this definition">¶</a></dt>

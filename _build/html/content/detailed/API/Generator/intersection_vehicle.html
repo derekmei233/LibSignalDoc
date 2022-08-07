@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>intersection_vehicle module &mdash; LibSignal v1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lane_vehicle module" href="lane_vehicle.html" />
+    <link rel="prev" title="intersection_phase module" href="intersection_phase.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> LibSignal
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Start:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getstart/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getstart/Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getstart/Start.html">Start</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Detailed Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Experiment/index.html">Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">API Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Module/index.html">Module Structure</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">LibSignal</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">API Introduction</a> &raquo;</li>
+          <li><a href="index.html">Generator</a> &raquo;</li>
+      <li>intersection_vehicle module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/content/detailed/API/Generator/intersection_vehicle.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-intersection_vehicle">
+<span id="intersection-vehicle-module"></span><h1>intersection_vehicle module<a class="headerlink" href="#module-intersection_vehicle" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="intersection_vehicle.IntersectionVehicleGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">intersection_vehicle.</span></span><span class="sig-name descname"><span class="pre">IntersectionVehicleGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">I</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('vehicle_trajectory',</span> <span class="pre">'lane_vehicles',</span> <span class="pre">'history_vehicles',</span> <span class="pre">'vehicle_distance')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'vehicle_map'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">negative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intersection_vehicle.IntersectionVehicleGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Generate State or Reward based on statistics of intersection vehicles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>world</strong> (<em>World object</em>) – </p></li>
+<li><p><strong>I</strong> (<em>Intersection object</em>) – </p></li>
+<li><p><strong>fns</strong> (<em>list of statistics to get</em><em>,</em><em>&quot;vehicle_trajectory&quot;</em><em>, </em><em>&quot;lane_vehicles&quot;</em><em>, </em><em>&quot;history_vehicles&quot; is needed for result &quot;passed_count&quot; and &quot;passed_time_count&quot;</em><em>,</em>) – “vehicle_distance”, “lane_vehicles” is needed for result “vehicle_map”
+“phase” is needed for result “cur_phase”</p></li>
+<li><p><strong>targets</strong> (<em>list of results to return</em><em>, </em><em>currently support &quot;vehicle_map&quot;: map of vehicles: an image representation of vehicles’ position in this intersection</em>) – <dl class="simple">
+<dt>“passed_count”: total number of vehicles that passed the intersection during time interval ∆t after the last action</dt><dd><p>”passed_time_count”: total time (in minutes) spent on approaching lanes of vehicles that passed the intersection during time interval ∆t after the last action
+“cur_phase”: current phase of the intersection (not before yellow phase)</p>
+</dd>
+</dl>
+<p>See section 4.2 of the intelliLight paper[Hua Wei et al, KDD’18] for more detailed description on these targets.</p>
+</p></li>
+<li><p><strong>negative</strong> (<em>boolean</em><em>, </em><em>whether return negative values</em><em> (</em><em>mostly for Reward</em><em>)</em>) – </p></li>
+<li><p><strong>time_interval</strong> (<em>use to calculate</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="intersection_vehicle.IntersectionVehicleGenerator.cur_phase">
+<span class="sig-name descname"><span class="pre">cur_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intersection_vehicle.IntersectionVehicleGenerator.cur_phase" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intersection_vehicle.IntersectionVehicleGenerator.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intersection_vehicle.IntersectionVehicleGenerator.generate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intersection_vehicle.IntersectionVehicleGenerator.get_passed_vehicles">
+<span class="sig-name descname"><span class="pre">get_passed_vehicles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intersection_vehicle.IntersectionVehicleGenerator.get_passed_vehicles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intersection_vehicle.IntersectionVehicleGenerator.get_vehicle_position">
+<span class="sig-name descname"><span class="pre">get_vehicle_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lane</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intersection_vehicle.IntersectionVehicleGenerator.get_vehicle_position" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intersection_vehicle.IntersectionVehicleGenerator.if_vehicle_passed_intersection">
+<span class="sig-name descname"><span class="pre">if_vehicle_passed_intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vehicle_trajectory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action_interval</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intersection_vehicle.IntersectionVehicleGenerator.if_vehicle_passed_intersection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intersection_vehicle.IntersectionVehicleGenerator.passed_count">
+<span class="sig-name descname"><span class="pre">passed_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intersection_vehicle.IntersectionVehicleGenerator.passed_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intersection_vehicle.IntersectionVehicleGenerator.passed_time_count">
+<span class="sig-name descname"><span class="pre">passed_time_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intersection_vehicle.IntersectionVehicleGenerator.passed_time_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intersection_vehicle.IntersectionVehicleGenerator.vehicle_map">
+<span class="sig-name descname"><span class="pre">vehicle_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intersection_vehicle.IntersectionVehicleGenerator.vehicle_map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intersection_phase.html" class="btn btn-neutral float-left" title="intersection_phase module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lane_vehicle.html" class="btn btn-neutral float-right" title="lane_vehicle module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, DaRL.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

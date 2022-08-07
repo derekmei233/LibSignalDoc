@@ -5,7 +5,7 @@
 LibSingal provides installation from source code.
 Please execute the following command to install and configure  our environment.
 
-```
+```---
 mkdir DaRL
 cd DaRL
 git clone git@github.com:DaRL-LibSignal/LibSignal.git

@@ -3,12 +3,6 @@
 used to describe the sumo world information
 """
 
-import json
-import xml.etree.cElementTree as ET
-import xml.dom.minidom
-from math import atan2, pi
-
-
 def _get_direction(road):
     '''_get_direction
 

@@ -77,8 +77,186 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="world-cityflow-module">
-<h1>World_cityflow module<a class="headerlink" href="#world-cityflow-module" title="Permalink to this heading">¶</a></h1>
+  <section id="module-World_cityflow">
+<span id="world-cityflow-module"></span><h1>World_cityflow module<a class="headerlink" href="#module-World_cityflow" title="Permalink to this heading">¶</a></h1>
+<p>used to describe the cityflow world information</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="World_cityflow.Intersection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">World_cityflow.</span></span><span class="sig-name descname"><span class="pre">Intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intersection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.Intersection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Intersection Class is mainly used for describing crossing information
+and defining acting methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.Intersection.insert_road">
+<span class="sig-name descname"><span class="pre">insert_road</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">road</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.Intersection.insert_road" title="Permalink to this definition">¶</a></dt>
+<dd><p>It’s used to append a road into self.road
+meanwhile, add the corresponding direction with the added road</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>road</strong> – newly added road</p></li>
+<li><p><strong>out</strong> – newly added out</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>empty</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.Intersection.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.Intersection.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function is to reset current_phase, tl_phase, current_phase_time, action_before_yellow and action_executed
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.Intersection.sort_roads">
+<span class="sig-name descname"><span class="pre">sort_roads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">RIGHT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.Intersection.sort_roads" title="Permalink to this definition">¶</a></dt>
+<dd><p>To sort roads information by arranging an order
+:param RIGHT:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.Intersection.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.Intersection.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>step is to take relative actions according to interval
+:param action: the changes to take
+:param interval: the non-acting time slice</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="World_cityflow.World">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">World_cityflow.</span></span><span class="sig-name descname"><span class="pre">World</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cityflow_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Create a CityFlow engine and maintain informations about CityFlow world</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.get_average_travel_time">
+<span class="sig-name descname"><span class="pre">get_average_travel_time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.get_average_travel_time" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.get_cur_phase">
+<span class="sig-name descname"><span class="pre">get_cur_phase</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.get_cur_phase" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.get_cur_throughput">
+<span class="sig-name descname"><span class="pre">get_cur_throughput</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.get_cur_throughput" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.get_executed_action">
+<span class="sig-name descname"><span class="pre">get_executed_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.get_executed_action" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.get_history_vehicles">
+<span class="sig-name descname"><span class="pre">get_history_vehicles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.get_history_vehicles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.get_info">
+<span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.get_info" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>info</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.get_lane_delay">
+<span class="sig-name descname"><span class="pre">get_lane_delay</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.get_lane_delay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.get_lane_queue_length">
+<span class="sig-name descname"><span class="pre">get_lane_queue_length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.get_lane_queue_length" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.get_lane_waiting_time_count">
+<span class="sig-name descname"><span class="pre">get_lane_waiting_time_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.get_lane_waiting_time_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.get_pressure">
+<span class="sig-name descname"><span class="pre">get_pressure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.get_pressure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.get_vehicle_lane">
+<span class="sig-name descname"><span class="pre">get_vehicle_lane</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.get_vehicle_lane" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.get_vehicle_trajectory">
+<span class="sig-name descname"><span class="pre">get_vehicle_trajectory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.get_vehicle_trajectory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.get_vehicle_waiting_time">
+<span class="sig-name descname"><span class="pre">get_vehicle_waiting_time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.get_vehicle_waiting_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>reset the engine</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.reset_vehicle_info">
+<span class="sig-name descname"><span class="pre">reset_vehicle_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.reset_vehicle_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>reset vehicle infos,including waiting_time, trajectory,etc
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">actions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>step: to take one time action
+:param actions:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.subscribe">
+<span class="sig-name descname"><span class="pre">subscribe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.subscribe" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fns</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="World_cityflow.World.update_current_measurements">
+<span class="sig-name descname"><span class="pre">update_current_measurements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#World_cityflow.World.update_current_measurements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 

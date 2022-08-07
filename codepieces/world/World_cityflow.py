@@ -3,20 +3,6 @@
 used to describe the cityflow world information
 """
 
-import os
-import sys
-from sys import platform
-import argparse
-from collections import defaultdict
-import sympy
-from mpmath import degrees, radians
-import copy
-import math
-import json
-import xml.etree.cElementTree as ET
-import xml.dom.minidom
-from math import atan2, pi
-
 
 def _get_direction(road, out=True):
     '''get_direction

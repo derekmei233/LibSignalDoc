@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 class TSCTrainer:
-    '''register TSCTrainerHAHAHA
+    '''register TSCTrainer
 
     :arg default params
         logger:logger

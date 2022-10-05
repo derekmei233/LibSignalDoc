@@ -21,7 +21,6 @@ Welcome to LibSignal's documentation!
    content/detailed/Params/params.md
    content/detailed/Experiment/index.rst
    content/detailed/API/index.rst
-   content/detailed/Module/index.rst
 
 
 

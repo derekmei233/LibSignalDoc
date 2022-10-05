@@ -16,6 +16,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -55,7 +56,6 @@
 <li class="toctree-l2"><a class="reference internal" href="Metric/metric.html">Metric</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../Module/index.html">Module Structure</a></li>
 </ul>
 
         </div>
@@ -87,9 +87,98 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="World/index.html">World</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="World/World_cityflow.html">World_cityflow module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="World/World_openengine.html">World_openengine module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="World/World_sumo.html">World_sumo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="World/World_cityflow.html">World_cityflow module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.Intersection"><code class="docutils literal notranslate"><span class="pre">Intersection</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.Intersection.insert_road"><code class="docutils literal notranslate"><span class="pre">Intersection.insert_road()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.Intersection.reset"><code class="docutils literal notranslate"><span class="pre">Intersection.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.Intersection.sort_roads"><code class="docutils literal notranslate"><span class="pre">Intersection.sort_roads()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.Intersection.step"><code class="docutils literal notranslate"><span class="pre">Intersection.step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World"><code class="docutils literal notranslate"><span class="pre">World</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.get_average_travel_time"><code class="docutils literal notranslate"><span class="pre">World.get_average_travel_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.get_cur_phase"><code class="docutils literal notranslate"><span class="pre">World.get_cur_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.get_cur_throughput"><code class="docutils literal notranslate"><span class="pre">World.get_cur_throughput()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.get_executed_action"><code class="docutils literal notranslate"><span class="pre">World.get_executed_action()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.get_history_vehicles"><code class="docutils literal notranslate"><span class="pre">World.get_history_vehicles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.get_info"><code class="docutils literal notranslate"><span class="pre">World.get_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.get_lane_delay"><code class="docutils literal notranslate"><span class="pre">World.get_lane_delay()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.get_lane_queue_length"><code class="docutils literal notranslate"><span class="pre">World.get_lane_queue_length()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.get_lane_waiting_time_count"><code class="docutils literal notranslate"><span class="pre">World.get_lane_waiting_time_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.get_pressure"><code class="docutils literal notranslate"><span class="pre">World.get_pressure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.get_vehicle_lane"><code class="docutils literal notranslate"><span class="pre">World.get_vehicle_lane()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.get_vehicle_trajectory"><code class="docutils literal notranslate"><span class="pre">World.get_vehicle_trajectory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.get_vehicle_waiting_time"><code class="docutils literal notranslate"><span class="pre">World.get_vehicle_waiting_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.reset"><code class="docutils literal notranslate"><span class="pre">World.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.reset_vehicle_info"><code class="docutils literal notranslate"><span class="pre">World.reset_vehicle_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.step"><code class="docutils literal notranslate"><span class="pre">World.step()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.subscribe"><code class="docutils literal notranslate"><span class="pre">World.subscribe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_cityflow.html#World_cityflow.World.update_current_measurements"><code class="docutils literal notranslate"><span class="pre">World.update_current_measurements()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="World/World_openengine.html">World_openengine module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="World/World_openengine.html#World_openengine.Intersection"><code class="docutils literal notranslate"><span class="pre">Intersection</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.Intersection.observe"><code class="docutils literal notranslate"><span class="pre">Intersection.observe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.Intersection.psedo_step"><code class="docutils literal notranslate"><span class="pre">Intersection.psedo_step()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.Intersection.reset"><code class="docutils literal notranslate"><span class="pre">Intersection.reset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="World/World_openengine.html#World_openengine.World"><code class="docutils literal notranslate"><span class="pre">World</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.get_average_travel_time"><code class="docutils literal notranslate"><span class="pre">World.get_average_travel_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.get_cur_phase"><code class="docutils literal notranslate"><span class="pre">World.get_cur_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.get_cur_throughput"><code class="docutils literal notranslate"><span class="pre">World.get_cur_throughput()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.get_info"><code class="docutils literal notranslate"><span class="pre">World.get_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.get_lane_delay"><code class="docutils literal notranslate"><span class="pre">World.get_lane_delay()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.get_lane_queue_length"><code class="docutils literal notranslate"><span class="pre">World.get_lane_queue_length()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.get_lane_vehicle_count"><code class="docutils literal notranslate"><span class="pre">World.get_lane_vehicle_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.get_lane_vehicles"><code class="docutils literal notranslate"><span class="pre">World.get_lane_vehicles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.get_lane_waiting_time_count"><code class="docutils literal notranslate"><span class="pre">World.get_lane_waiting_time_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.get_lane_waiting_vehicle_count"><code class="docutils literal notranslate"><span class="pre">World.get_lane_waiting_vehicle_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.get_pressure"><code class="docutils literal notranslate"><span class="pre">World.get_pressure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.get_vehicles"><code class="docutils literal notranslate"><span class="pre">World.get_vehicles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.reset"><code class="docutils literal notranslate"><span class="pre">World.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.step"><code class="docutils literal notranslate"><span class="pre">World.step()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_openengine.html#World_openengine.World.subscribe"><code class="docutils literal notranslate"><span class="pre">World.subscribe()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="World/World_sumo.html">World_sumo module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="World/World_sumo.html#World_sumo.Intersection"><code class="docutils literal notranslate"><span class="pre">Intersection</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.Intersection.get_current_phase"><code class="docutils literal notranslate"><span class="pre">Intersection.get_current_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.Intersection.observe"><code class="docutils literal notranslate"><span class="pre">Intersection.observe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.Intersection.prep_phase"><code class="docutils literal notranslate"><span class="pre">Intersection.prep_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.Intersection.pseudo_step"><code class="docutils literal notranslate"><span class="pre">Intersection.pseudo_step()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.Intersection.reset"><code class="docutils literal notranslate"><span class="pre">Intersection.reset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="World/World_sumo.html#World_sumo.World"><code class="docutils literal notranslate"><span class="pre">World</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.generate_valid_phase"><code class="docutils literal notranslate"><span class="pre">World.generate_valid_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_average_travel_time"><code class="docutils literal notranslate"><span class="pre">World.get_average_travel_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_cur_phase"><code class="docutils literal notranslate"><span class="pre">World.get_cur_phase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_cur_throughput"><code class="docutils literal notranslate"><span class="pre">World.get_cur_throughput()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_current_time"><code class="docutils literal notranslate"><span class="pre">World.get_current_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_info"><code class="docutils literal notranslate"><span class="pre">World.get_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_lane_delay"><code class="docutils literal notranslate"><span class="pre">World.get_lane_delay()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_lane_queue_length"><code class="docutils literal notranslate"><span class="pre">World.get_lane_queue_length()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_lane_vehicle_count"><code class="docutils literal notranslate"><span class="pre">World.get_lane_vehicle_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_lane_vehicles"><code class="docutils literal notranslate"><span class="pre">World.get_lane_vehicles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_lane_waiting_time_count"><code class="docutils literal notranslate"><span class="pre">World.get_lane_waiting_time_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_lane_waiting_vehicle_count"><code class="docutils literal notranslate"><span class="pre">World.get_lane_waiting_vehicle_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_plan_depart_time"><code class="docutils literal notranslate"><span class="pre">World.get_plan_depart_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_pressure"><code class="docutils literal notranslate"><span class="pre">World.get_pressure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.get_vehicles"><code class="docutils literal notranslate"><span class="pre">World.get_vehicles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.reset"><code class="docutils literal notranslate"><span class="pre">World.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.step"><code class="docutils literal notranslate"><span class="pre">World.step()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.step_sim"><code class="docutils literal notranslate"><span class="pre">World.step_sim()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="World/World_sumo.html#World_sumo.World.subscribe"><code class="docutils literal notranslate"><span class="pre">World.subscribe()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="World/World_sumo.html#World_sumo.create_yellows"><code class="docutils literal notranslate"><span class="pre">create_yellows()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Agent/index.html">Agent</a><ul>
@@ -124,7 +213,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Generator/index.html">Generator</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Generator/base.html">base module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Generator/intersection_phase.html">intersection_phase module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Generator/intersection_phase.html">intersection_phase module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Generator/intersection_phase.html#intersection_phase.IntersectionPhaseGenerator"><code class="docutils literal notranslate"><span class="pre">IntersectionPhaseGenerator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Generator/intersection_phase.html#intersection_phase.IntersectionPhaseGenerator.generate"><code class="docutils literal notranslate"><span class="pre">IntersectionPhaseGenerator.generate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="Generator/intersection_vehicle.html">intersection_vehicle module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Generator/lane_vehicle.html">lane_vehicle module</a></li>
 </ul>

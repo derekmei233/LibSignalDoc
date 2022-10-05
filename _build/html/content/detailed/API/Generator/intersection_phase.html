@@ -16,6 +16,7 @@
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -49,7 +50,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Params/params.html">Params</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Experiment/index.html">Experiment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">API Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Module/index.html">Module Structure</a></li>
 </ul>
 
         </div>
@@ -90,8 +90,8 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>world</strong> (<em>World object</em>) – </p></li>
 <li><p><strong>I</strong> (<em>Intersection object</em>) – </p></li>
-<li><p><strong>fns</strong> (<em>list of statistics to get</em><em>, </em><em>&quot;phase&quot; is needed for result &quot;cur_phase&quot;</em>) – </p></li>
-<li><p><strong>targets</strong> (<em>list of results to return</em><em>, </em><em>currently support &quot;cur_phase&quot;: current phase of the intersection</em><em> (</em><em>not before yellow phase</em><em>)</em>) – See section 4.2 of the intelliLight paper[Hua Wei et al, KDD’18] for more detailed description on these targets.</p></li>
+<li><p><strong>fns</strong> (<em>list</em><em> of </em><em>statistics to get</em><em>, </em><em>&quot;phase&quot; is needed for result &quot;cur_phase&quot;</em>) – </p></li>
+<li><p><strong>targets</strong> (<em>list</em><em> of </em><em>results to return</em><em>, </em><em>currently support &quot;cur_phase&quot;: current phase</em><em> of </em><em>the intersection</em><em> (</em><em>not before yellow phase</em><em>)</em>) – See section 4.2 of the intelliLight paper[Hua Wei et al, KDD’18] for more detailed description on these targets.</p></li>
 <li><p><strong>negative</strong> (<em>boolean</em><em>, </em><em>whether return negative values</em><em> (</em><em>mostly for Reward</em><em>)</em>) – </p></li>
 <li><p><strong>time_interval</strong> (<em>use to calculate</em>) – </p></li>
 </ul>

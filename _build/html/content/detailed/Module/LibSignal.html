@@ -16,6 +16,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -47,7 +48,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../Params/params.html">Params</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Experiment/index.html">Experiment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../API/index.html">API Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Module Structure</a></li>
 </ul>
 
         </div>
@@ -156,51 +156,8 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
 </section>
-<section id="module-LibSignal.environment">
-<span id="libsignal-environment-module"></span><h2>LibSignal.environment module<a class="headerlink" href="#module-LibSignal.environment" title="Permalink to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="LibSignal.environment.TSCEnv">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">LibSignal.environment.</span></span><span class="sig-name descname"><span class="pre">TSCEnv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LibSignal.environment.TSCEnv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Env</span></code></p>
-<p>Environment for Traffic Signal Control task.
-:param world:
-:type world: World object
-:param agents:
-:type agents: list of agents, corresponding to each intersection in world.intersections
-:param metric:
-:type metric: Metric object, used to calculate evaluation metric</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="LibSignal.environment.TSCEnv.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LibSignal.environment.TSCEnv.reset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Resets the environment to an initial state and returns an initial
-observation.</p>
-<p>Note that this function should not reset the environment’s random
-number generator(s); random variables in the environment’s state should
-be sampled independently between multiple calls to <cite>reset()</cite>. In other
-words, each call of <cite>reset()</cite> should yield an environment suitable for
-a new episode, independent of previous episodes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the initial observation.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>observation (object)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="LibSignal.environment.TSCEnv.step">
-<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">actions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LibSignal.environment.TSCEnv.step" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>actions</strong> – keep action as N_agents * 1</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<section id="libsignal-environment-module">
+<h2>LibSignal.environment module<a class="headerlink" href="#libsignal-environment-module" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="libsignal-run-module">
 <h2>LibSignal.run module<a class="headerlink" href="#libsignal-run-module" title="Permalink to this heading">¶</a></h2>
